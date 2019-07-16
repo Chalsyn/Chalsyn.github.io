@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          latex基本语法 - chalsyn | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/article/latex基本语法/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#latex" title="latex">latex</a>
+                            
+                        </div>
+                        <h1>latex基本语法</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Chalsyn_tse on
+                            2019-03-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Chalsyn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="latex语法">LATEX语法</h1>
+<p>标签（空格分隔）： 基础语法  LATEX</p>
+<hr>
+<ul>
+<li>什么是 LaTeX? 为什么要学习 LaTeX?<br>
+期刊, 论文, 作业, 书籍, 报告…<br>
+你的第一个 TeX 文档</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;article&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">First document. This is a simple example, with no extra parameters or packages included.</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tex-文档的头部">TeX 文档的头部</h3>
+<p>文件头如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[12pt, letterpaper]&#123;ctexart&#125;</span><br><span class="line">\usepackage[a4paper,total=&#123;6in,8in&#125;]&#123;geometry&#125;  % 设置纸面</span><br><span class="line"></span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">      本文将研究~X~问题.</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><code>标题</code>, <code>作者</code>, <code>时间</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[12pt, letterpaper]&#123;ctexart&#125;</span><br><span class="line">\usepackage[a4paper,total=&#123;6in,8in&#125;]&#123;geometry&#125;  % 设置纸面</span><br><span class="line">\title&#123;题目&#125;</span><br><span class="line">\author&#123;你的名字。&#125;</span><br><span class="line">\date&#123;\today&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">\maketitle    % 显示标题</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><code>注释</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% 这是注释, 不会显示在 pdf 中</span><br><span class="line">\maketitle    % 显示标题</span><br></pre></td></tr></table></figure>
+<p><code>粗体</code>, <code>斜体</code>, <code>下划线</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Some of the \textbf&#123;greatest&#125;</span><br><span class="line">discoveries in \underline&#123;science&#125; </span><br><span class="line">were made by \textbf&#123;\textit&#123;accident&#125;&#125;.</span><br><span class="line">Some of the greatest \emph&#123;discoveries&#125; </span><br><span class="line">in science </span><br><span class="line">were made by accident.</span><br></pre></td></tr></table></figure>
+<p><code>插入图片</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;article&#125;</span><br><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\graphicspath&#123; &#123;Figure/&#125; &#125;%图片路径</span><br><span class="line">\DeclareGraphicsExtensions&#123;.pdf,.png,.jpg&#125;  % 声明图片可能出现所有格式</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">The universe is immense and it seems to be homogeneous, </span><br><span class="line">in a large scale, everywhere we look at.</span><br><span class="line">\includegraphics&#123;universe&#125;     %如果之前有声明插入图片时就可以不要后缀名了</span><br><span class="line">There&apos;s a picture of a galaxy above</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><code>图片居中</code>,<code>标题</code>,<code>大小</code>, <code>引用</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">% 图片宏, h 选项表示在文中此位置(here)放置图片; 其他选项, 比如 t 表示将图片放置在本页顶部(top).</span><br><span class="line">\begin&#123;figure&#125;[h]</span><br><span class="line">% 居中                         </span><br><span class="line">\centering</span><br><span class="line">% width 规定图片宽度, 此处指定宽度为页面宽度 0.5 倍                                  </span><br><span class="line">\includegraphics[width=0.5\textwidth]&#123;Judy2&#125;                   </span><br><span class="line">% 图片标题 </span><br><span class="line">\caption&#123;电影《疯狂动物城》中的~Judy~警官&#125;  </span><br><span class="line">% 图片索引             </span><br><span class="line">\label&#123;fig:Judy&#125;      </span><br><span class="line">\end&#123;figure&#125;</span><br><span class="line">图~\ref&#123;fig:Judy&#125;~中的兔子是电影《疯狂动物城》中出现的主角之一, 名叫~Judy.</span><br></pre></td></tr></table></figure>
+<p><code>列表</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  - 无序列表</span><br><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">  \item The individual entries are indicated with a black dot, a so-called bullet.</span><br><span class="line">  \item The text in the entries may be of any length.</span><br><span class="line">\end&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">  - 有序列表</span><br><span class="line">\begin&#123;enumerate&#125;</span><br><span class="line">  \item This is the first entry in our list</span><br><span class="line">  \item The list numbers increase with each entry we add</span><br><span class="line">\end&#123;enumerate&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数学公式">数学公式</h3>
+<p>% <code>文件头</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;ctexart&#125;    % 定义中文 article</span><br><span class="line">\usepackage[a4paper,total=&#123;6in,8in&#125;]&#123;geometry&#125;  % 设置纸面</span><br><span class="line">\usepackage&#123;amsmath&#125;      % 基本数学符号库</span><br><span class="line">\usepackage&#123;mathtools&#125;      % 数学工具补充</span><br><span class="line">\usepackage&#123;amsthm&#125;     % 数学定理字体</span><br><span class="line">\usepackage&#123;amsfonts&#125;    % AMS数学字体</span><br><span class="line">\usepackage&#123;amssymb&#125;    % AMS数学符号</span><br><span class="line">\usepackage&#123;mathrsfs&#125;   % 花体字母</span><br><span class="line">\begin&#123;document&#125;    % 开始文档主体</span><br></pre></td></tr></table></figure>
+<p><code>行内公式</code><br>
+特殊符号用斜杠 + 命令调用<br>
+列出一些希腊字母$$(\alpha, \beta, \gamma, \Gamma, \pi, \Pi, \phi, \varphi, \mu, \Phi)$$这是行内公式<br>
+<code>上标</code><br>
+这是行外公式, 它会自成一行.$$ [\cos (2\theta) = \cos^2 \theta - \sin^2 \theta]$$<br>
+<code>根号</code><br>
+$$[\sqrt[n]{\frac{a}{b}}]$$<br>
+<code>向量表示</code><br>
+$$[\boldsymbol{\beta} = (\beta_1,\beta_2,\dotsc,\beta_n)]$$<br>
+dot 点  s很多个   c居中</p>
+<p><code>自动调整括号高度</code><br>
+$$[4\left{z+\ln\left[1+\left(\frac{x}{y}\right)^2\right]\right} ] $$</p>
+<p>$$[\forall \epsilon &gt; 0, \exists \delta &gt; 0, \forall |x-x_0| &lt; \delta, |f(x)-f(x_0)| &lt; \epsilon]$$</p>
+<p><code>积分; 下标; 无穷; 正体字; pi</code><br>
+$$[\int_{-\infty}^\infty\mathrm{e}^{-\pi x^2},\mathrm{d}x=1]$$<br>
+\mathrm{e}表示e的正体</p>
+<p><code>加和; 下标; 分数</code><br>
+$$[\sum_{k=1}^{\infty}\frac{1}{k^2}=\frac{\pi^2}{6}]$$</p>
+<p><code>矩阵</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> 使用 equation 宏可以对公式自动按序编号</span><br><span class="line">\begin&#123;equation&#125;    </span><br><span class="line">A_&#123;m,n&#125; =</span><br><span class="line"> \begin&#123;pmatrix&#125;</span><br><span class="line">  a_&#123;1,1&#125; &amp; a_&#123;1,2&#125; &amp; \cdots &amp; a_&#123;1,n&#125; \\ %换行 &amp;对齐</span><br><span class="line">  a_&#123;2,1&#125; &amp; a_&#123;2,2&#125; &amp; \cdots &amp; a_&#123;2,n&#125; \\</span><br><span class="line">  \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\</span><br><span class="line">  a_&#123;m,1&#125; &amp; a_&#123;m,2&#125; &amp; \cdots &amp; a_&#123;m,n&#125;</span><br><span class="line"> \end&#123;pmatrix&#125;</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<p><code>分段函数</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">align 宏除了具有 equation 的编号功能, 还能实现更精准的对齐, 详见 Wikibook.</span><br><span class="line">\begin&#123;align&#125;   </span><br><span class="line">f(n) =</span><br><span class="line">  \begin&#123;cases&#125;  %大括号</span><br><span class="line">     \frac&#123;n&#125;&#123;2&#125;       &amp; \quad \text&#123;if &#125; n \text&#123; is even&#125;\\</span><br><span class="line">    -\frac&#123;n+1&#125;&#123;2&#125;  &amp; \quad \text&#123;if &#125; n \text&#123; is odd&#125;\\</span><br><span class="line">  \end&#123;cases&#125;</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="基本格式">基本格式</h3>
+<p><code>摘要</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;document&#125;</span><br><span class="line">\begin&#123;abstract&#125;</span><br><span class="line">This is a simple paragraph at the beginning of the </span><br><span class="line">document. A brief introduction about the main subject.</span><br><span class="line">\end&#123;abstract&#125;</span><br><span class="line">Now that we have written our abstract, we can begin writing our first paragraph.</span><br><span class="line">This line will start a second Paragraph.</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><code>章节</code></p>
+<p>只在 \documentclass{book} 或 \documentclass{ctexbook} 下支持chapter标签<br>
+\chapter{First Chapter}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">\section&#123;Introduction&#125;</span><br><span class="line">This is the first section.</span><br><span class="line">Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  </span><br><span class="line">elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et </span><br><span class="line">neque pharetra sollicitudin.  Praesent imperdietmi nec ante. </span><br><span class="line">Donec ullamcorper, felis non sodales...</span><br><span class="line">\section&#123;Second Section&#125;</span><br><span class="line">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  </span><br><span class="line">Etiam lobortis facilisissem.  Nullam nec mi et neque pharetra </span><br><span class="line">sollicitudin.  Praesent imperdiet mi necante...</span><br><span class="line">\subsection&#123;First Subsection&#125;</span><br><span class="line">Praesent imperdietmi nec ante. Donec ullamcorper, felis non sodales...</span><br><span class="line">\subsubsection&#123;Subsubsection&#125; </span><br><span class="line">blahblahblah</span><br><span class="line">\section*&#123;Unnumbered Section&#125;</span><br><span class="line">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  </span><br><span class="line">Etiam lobortis facilisissem</span><br></pre></td></tr></table></figure>
+<p><code>目录</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">% 另开一页给目录</span><br><span class="line">\newpage</span><br><span class="line">% 目录; 注意为了生成目录需要编译 2 次; 第 1 次产生编号; 第 2 次产生目录    </span><br><span class="line">\tableofcontents</span><br><span class="line">% 再开一页    </span><br><span class="line">\newpage</span><br></pre></td></tr></table></figure>
+<p><code>创建表格</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">带边框, 居中</span><br><span class="line">$$</span><br><span class="line">\begin&#123;center&#125;</span><br><span class="line">\begin&#123;tabular&#125;&#123; |c|c|c| &#125; 表示有三列</span><br><span class="line"> \hline  横线</span><br><span class="line"> cell1 &amp; cell2 &amp; cell3 \\ </span><br><span class="line"> cell4 &amp; cell5 &amp; cell6 \\ </span><br><span class="line"> \hline</span><br><span class="line">\end&#123;tabular&#125;</span><br><span class="line">\end&#123;center&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>手打 LaTeX 表格很麻烦, 推荐使用 Table Editor 表格在线生成器, 生成表格的 LaTeX 代码.</p>
+<p><code>标题</code>, <code>引用</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">Table \ref&#123;table:data&#125; is an example of referenced \LaTeX&#123;&#125; elements.</span><br><span class="line">\begin&#123;table&#125;[h!]</span><br><span class="line">\centering</span><br><span class="line">\begin&#123;tabular&#125;&#123;||c c c c||&#125;</span><br><span class="line"> \hline</span><br><span class="line"> Col1 &amp; Col2 &amp; Col2 &amp; Col3 \\ [0.5ex]</span><br><span class="line"> \hline\hline</span><br><span class="line"> 1 &amp; 6 &amp; 87837 &amp; 787 \\ </span><br><span class="line"> 2 &amp; 7 &amp; 78 &amp; 5415 \\</span><br><span class="line"> 5 &amp; 88 &amp; 788 &amp; 6344 \\ [1ex]</span><br><span class="line"> \hline</span><br><span class="line">\end&#123;tabular&#125;</span><br><span class="line">\caption&#123;Table to test captions and labels&#125;</span><br><span class="line">\label&#123;table:data&#125;</span><br><span class="line">\end&#123;table&#125;</span><br><span class="line"> $$</span><br></pre></td></tr></table></figure>
+<p><code>管理, 引用参考文献</code><br>
+使用 BibTeX</p>
+<ul>
+<li>首先建立参考文献数据库.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">base1.bib</span><br><span class="line">@article&#123;AbedonHymanThomas2003,</span><br><span class="line">author = &quot;Abedon, S. T. and Hyman, P. and Thomas, C.&quot;,</span><br><span class="line">year = &quot;2003&quot;,</span><br><span class="line">title = &quot;Experimental examination of bacteriophage latent-period evolution as a response to bacterial availability&quot;,</span><br><span class="line">journal = &quot;Applied and Environmental Microbiology&quot;,</span><br><span class="line">volume = &quot;69&quot;,</span><br><span class="line">pages = &quot;7499--7506&quot;</span><br><span class="line">&#125;</span><br><span class="line">@article&#123;blackholes,</span><br><span class="line">   author=&quot;Rabbert Klein&quot;,</span><br><span class="line">   title=&quot;Black Holes and Their Relation to Hiding Eggs&quot;,</span><br><span class="line">   journal=&quot;Theoretical Easter Physics&quot;,</span><br><span class="line">   publisher=&quot;Eggs Ltd.&quot;,</span><br><span class="line">   year=&quot;2010&quot;,</span><br><span class="line">   note=&quot;(to appear)&quot;</span><br><span class="line">&#125;</span><br><span class="line">@article&#123;greenwade93,</span><br><span class="line"> author  = &quot;George D. Greenwade&quot;,</span><br><span class="line"> title   = &quot;The &#123;C&#125;omprehensive &#123;T&#125;ex &#123;A&#125;rchive &#123;N&#125;etwork (&#123;CTAN&#125;)&quot;,</span><br><span class="line"> year    = &quot;1993&quot;,</span><br><span class="line"> journal = &quot;TUGBoat&quot;,</span><br><span class="line"> volume  = &quot;14&quot;,</span><br><span class="line"> number  = &quot;3&quot;,</span><br><span class="line"> pages   = &quot;342--351&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">base2.bib</span><br><span class="line">@book&#123;HuGuoQuan,</span><br><span class="line">    author    = &quot;胡国权&quot;,</span><br><span class="line">    title     = &quot;几何与代数导引&quot;,</span><br><span class="line">    publisher = &quot;科学出版社&quot;,</span><br><span class="line">    year      = &quot;2006&quot;</span><br><span class="line">&#125;</span><br><span class="line">@book&#123;ZhouMinQiang,</span><br><span class="line">    author    = &quot;周民强&quot;,</span><br><span class="line">    title     = &quot;实变函数解题指南&quot;,</span><br><span class="line">    publisher = &quot;北京大学出版社&quot;,</span><br><span class="line">    year      = &quot;2007&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更多参考文献数据样板请参考 LaTeX/Bibliography Management<br>
+然后在文档中这样引用：<br>
+详情请参见~\cite{blackholes}.<br>
+邓东皋老师的实变函数习题很多都可以在周民强老师的~\cite{ZhouMinQiang}~中找到.<br>
+还可以把几个文献放在一起引用~\cite{ZhouMinQiang,greenwade93}.<br>
+BibTeX~只会显示数据库中在文中引用到的参考文献.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">% 使用 BibTeX 显示参考文献</span><br><span class="line">\bibliographystyle&#123;plain&#125;   % 设置参考文献显示格式为 plain (平白)</span><br><span class="line">\bibliography&#123;base1,base2&#125;  % 设置要引用的参考文献数据库</span><br></pre></td></tr></table></figure>
+<p>不使用 BibTeX<br>
+详情请参见~\cite[chapter 1, p.~215]{lamport94}.<br>
+邓东皋老师的实变函数习题很多都可以在周民强老师的~\cite{ZhouMinQiang}~中找到.<br>
+还可以把几个文献放在一起引用~\cite{lamport94,ZhouMinQiang,greenwade93}.<br>
+下面的内嵌式引用在引用文献量小的时候是足够用的了. 但当引用文献的数量很多, 或者重复引用时, 用~BibTeX~会方便得多.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">\begin&#123;thebibliography&#125;&#123;9&#125;</span><br><span class="line">\bibitem&#123;lamport94&#125;</span><br><span class="line">  Leslie Lamport,</span><br><span class="line">  \emph&#123;\LaTeX: a document preparation system&#125;,</span><br><span class="line">  Addison Wesley, Massachusetts,</span><br><span class="line">  2nd edition,</span><br><span class="line">  1994.</span><br><span class="line">\bibitem&#123;ZhouMinQiang&#125;</span><br><span class="line">  周民强,</span><br><span class="line">  \emph&#123;实变函数解题指南&#125;,</span><br><span class="line">  北京大学出版社,</span><br><span class="line">  第~1~版,</span><br><span class="line">  2007.</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/MySQL基础（一）/" data-toggle="tooltip" data-placement="top" title="MySQL基础（一）">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/层次分析法/" data-toggle="tooltip" data-placement="top" title="层次分析法">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#latex语法"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">LATEX&#x8BED;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tex-文档的头部"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">TeX &#x6587;&#x6863;&#x7684;&#x5934;&#x90E8;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数学公式"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">&#x6570;&#x5B66;&#x516C;&#x5F0F;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本格式"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">&#x57FA;&#x672C;&#x683C;&#x5F0F;</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#latex" title="latex">latex</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: '✎' /*'ℬ' */
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/huang-cen-san">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5809332604">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chalsyn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Chalsyn_tse 2019 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a href="http://chalsyn.github.io">Chalsyn</a> 
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+</html>

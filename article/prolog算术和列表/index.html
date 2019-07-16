@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          prolog算术和列表 - chalsyn | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/article/prolog算术和列表/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>prolog算术和列表</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Chalsyn_tse on
+                            2019-03-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Chalsyn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="tags-prolog">tags: prolog</h2>
+<h3 id="一-求列表集合的基数">一、求列表集合的基数</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">len([],0).</span><br><span class="line">len([_|A],M):-len(A,N),M is N+1.</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">len([_|A],M):-len(A,N),M is N+1.</span><br><span class="line">len([],0).</span><br></pre></td></tr></table></figure>
+<p>错误示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">len([],0).</span><br><span class="line">len([_|A],M):-len(A,N),N is M-1.</span><br><span class="line"></span><br><span class="line">len([],0).</span><br><span class="line">len([_|A],M):-len(A,N),M = N+1.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">len([],0).</span><br><span class="line">len([_|A],M):-len([A],N),M is N+1.</span><br></pre></td></tr></table></figure>
+<p>二、列表与累积器</p>
+<p>每次调用len，很麻烦，需要提高效率</p>
+<p><code>acclen(List,Acc,Length).</code></p>
+<table>
+<thead>
+<tr>
+<th>List</th>
+<th style="text-align:right">输入列表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acc</td>
+<td style="text-align:right">累计列表长度</td>
+</tr>
+<tr>
+<td>Length</td>
+<td style="text-align:right">列表长度</td>
+</tr>
+</tbody>
+</table>
+<p>需要满足：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|List|+Acc=Length</span><br></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">acclen([],X,X).</span><br><span class="line">acclen([_|A],X,Y):-acclen(A，X+1,Length).</span><br><span class="line">#这里会得出的结果出现0+1+1+1这种形式的结果</span><br><span class="line">acclen([],X,X).</span><br><span class="line">acclen([_|A],X,Length):-X is Acc-1,acclen(A,Acc,Length).</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="二-累加器和极大元素搜索">二、累加器和极大元素搜索</h3>
+<h5 id="累加器">累加器</h5>
+<h5 id="极大元素搜索">极大元素搜索</h5>
+<p>便利L中的元素，如果表头比A大，则放入MAX，否则保持MAX和A一致。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">accMax([H|T],A,Max):-H&gt;A,accMax(T,H,Max).</span><br><span class="line">accMax([H|T],A,Max):-H=&lt;A,accMax(T,A,Max).</span><br><span class="line">accMax([],A,A).</span><br></pre></td></tr></table></figure>
+<p>这是一个逆推的递归</p>
+<ul>
+<li>首先，给定一个A值，如果表头H比A大，就有<code>accMax（T,H,Max）</code>，接下来就让T的表头和H比较，在这个过程中，一直没有填Max这个空。</li>
+<li>直到最后没有元素了，就找有没有<code>accMax（[],H,Max）</code>这样的条件，这是一个把H的值给Max的过程</li>
+</ul>
+<p>可以应用<br>
+<code>max_ele(L,Max):-accmax(L,0,Max).</code><br>
+但存在一个问题，可以改进为<br>
+<code>max_ele(L，Max):-L=[H|_],accmax(L,H,Max).</code></p>
+<hr>
+<h3 id="三-列表和字符串操作">三、列表和字符串操作</h3>
+<h4 id="1-字符串链接">1、 字符串链接</h4>
+<p><strong>例子</strong></p>
+<p><code>append(L1,L2,L3)</code>,<code>L1=[a,b,c]</code>,<code>L2=[1,2,3]</code><br>
+得到 <code>L3=[a,b,c,1,2,3]</code></p>
+<p><strong>实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">append([],L,L).</span><br><span class="line">append([H|L1],L2,[H|L3]):-append(L1,L2,L3).</span><br></pre></td></tr></table></figure>
+<h4 id="2-判断是否为前后缀">2、判断是否为前后缀</h4>
+<ul>
+<li>
+<p><strong>判断前缀实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">preflix([],_).</span><br><span class="line">preflix([A|Y],[A|B]):-prefix(Y,B).</span><br><span class="line">##第一个是第二个的前缀</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>判断后缀实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sufflix(B,B).</span><br><span class="line">sufflix(Y，[_|B]):-prefix(Y,B).</span><br><span class="line">##第一个是第二个的后缀</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-判断是否为子字符串">3、判断是否为子字符串</h4>
+<p>由<code>2、判断是否为前后缀</code>，两刀切，即是否存在中间字符串<code>S</code>。<br>
+只要满足：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sublist(A,B):-sufflix(S,B),preflix(A,S).</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="四-字符串逆转操作">四、字符串逆转操作</h3>
+<h4 id="1-直接思路">1、直接思路</h4>
+<p><strong>意义</strong>：例如利用<code>[a,b,c]</code>的到<code>[c,b,a]</code><br>
+<strong>思路</strong>：取一个列表表头放入另一个列表的尾部<br>
+<strong>例子</strong>：</p>
+<ul>
+<li><code>[] -&gt; []</code></li>
+<li><code>[a|[b,c]] -&gt; [c,b]+[a]=[c,b,a]</code></li>
+</ul>
+<p><strong>代码实现</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apd([],[]).</span><br><span class="line">apd(_).</span><br><span class="line"></span><br><span class="line">simple_rev([],[]).</span><br><span class="line">simple_rev([H|T],X):-simple_rev(T,revT),apd(revT,[H],X).</span><br></pre></td></tr></table></figure>
+<p><strong>缺点</strong>：调用过多，效率低下</p>
+<p>####2、改进思路</p>
+<p><strong>思路</strong>：从输入列表获得表头后，依次作为累积器表头<br>
+<strong>实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">accRev([],A,A).</span><br><span class="line">accRev([H|T],A,R):-accRev([T],[H|A],R).</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/使用Pygal模块模拟掷骰子/" data-toggle="tooltip" data-placement="top" title="使用Pygal模块模拟掷骰子">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tags-prolog"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">tags: prolog</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-求列表集合的基数"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x6C42;&#x5217;&#x8868;&#x96C6;&#x5408;&#x7684;&#x57FA;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-累加器和极大元素搜索"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;&#x7D2F;&#x52A0;&#x5668;&#x548C;&#x6781;&#x5927;&#x5143;&#x7D20;&#x641C;&#x7D22;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#累加器"><span class="toc-nav-number">1.2.0.1.</span> <span class="toc-nav-text">&#x7D2F;&#x52A0;&#x5668;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#极大元素搜索"><span class="toc-nav-number">1.2.0.2.</span> <span class="toc-nav-text">&#x6781;&#x5927;&#x5143;&#x7D20;&#x641C;&#x7D22;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-列表和字符串操作"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4E09;&#x3001;&#x5217;&#x8868;&#x548C;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-字符串链接"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">1&#x3001; &#x5B57;&#x7B26;&#x4E32;&#x94FE;&#x63A5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-判断是否为前后缀"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">2&#x3001;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x524D;&#x540E;&#x7F00;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-判断是否为子字符串"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">3&#x3001;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x5B50;&#x5B57;&#x7B26;&#x4E32;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#四-字符串逆转操作"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x56DB;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#x9006;&#x8F6C;&#x64CD;&#x4F5C;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-直接思路"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">1&#x3001;&#x76F4;&#x63A5;&#x601D;&#x8DEF;</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: '✎' /*'ℬ' */
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/huang-cen-san">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5809332604">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chalsyn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Chalsyn_tse 2019 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a href="http://chalsyn.github.io">Chalsyn</a> 
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+</html>

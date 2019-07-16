@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          三种简单排序 - chalsyn | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/article/三种简单排序/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                            
+                              <a class="tag" href="/tags/#c++" title="c++">c++</a>
+                            
+                        </div>
+                        <h1>三种简单排序</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Chalsyn_tse on
+                            2019-03-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Chalsyn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="一-直接插入排序"><strong>一、直接插入排序</strong></h3>
+<h4 id="排序算法名称">排序算法名称</h4>
+<p><strong>直接插入排序<code>Straight Insertion Sort</code></strong></p>
+<h4 id="原理">原理</h4>
+<p>把n个待排序的元素看成为一个有序表和一个无序表。</p>
+<p>开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表。重复n-1次可完成排序过程。</p>
+<h4 id="伪代码">伪代码</h4>
+<p>一般来说，插入排序都采用数组实现。</p>
+<ul>
+<li>从第二个元素开始，第一个元素可以认为已经被排序</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+<li>重复步骤2~5</li>
+</ul>
+<h4 id="程序">程序</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">void Insertsort(T r[], int n)</span><br><span class="line">&#123;</span><br><span class="line">	for (int i = 2; i &lt;n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int j;</span><br><span class="line">		r[0] = r[i];</span><br><span class="line">		for (j = i - 1;j&gt;=1 &amp;&amp; r[0]&lt;r[j]; j--)</span><br><span class="line">			r[j + 1] = r[j];</span><br><span class="line">		r[j + 1] = r[0];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂性分析">复杂性分析</h4>
+<ul>
+<li>最好情况，序列是升序排列，需要进行的比较操作需 $n-1$次即可,移动$2(n-1)$次。</li>
+<li>最坏情况，序列是降序排列，那么此时需要进行的比较共有  $\frac {(n+2)(n-1)}{2}$次，移动 $\frac {(n+4)(n-1)}{2}$次。</li>
+<li>平均来说，比较次数$ O(n^{2})$  ，移动次数$ O(n^{2})$。<br>
+空间复杂度为$0(1)$</li>
+</ul>
+<h4 id="总结分析">总结分析</h4>
+<p>由于时间复杂度为$ O(n^{2})$ ，插入排序不适合对于数据量比较大的排序应用。<br>
+但是，如果需要排序的数据量很小，例如，量级小于千；或者若已知输入元素大致上按照顺序排列，那么插入排序还是一个不错的选择。 插入排序在工业级库中也有着广泛的应用，在STL的sort算法和stdlib的qsort算法中，都将插入排序作为快速排序的补充，用于少量元素的排序（通常为8个或以下）。</p>
+<hr>
+<h3 id="二-shell排序"><strong>二、shell排序</strong></h3>
+<h4 id="排序算法名称">排序算法名称</h4>
+<p><strong>希尔排序<code>(Shell's sort)</code></strong>，也称<strong>递减增量排序算法</strong>，是插入排序的一种更高效的改进版本。希尔排序是非稳定排序算法。</p>
+<h4 id="原理">原理</h4>
+<p>希尔排序是基于插入排序的以下两点性质而提出改进方法的：</p>
+<ul>
+<li>插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到线性排序的效率</li>
+<li>但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位</li>
+</ul>
+<p>希尔排序通过将比较的全部元素分为几个区域来提升插入排序的性能。这样可以让一个元素可以一次性地朝最终位置前进一大步。然后算法再取越来越小的步长进行排序，算法的最后一步就是普通的插入排序，但是到了这步，需排序的数据几乎是已排好的了（此时插入排序较快）。</p>
+<p>假设有一个很小的数据在一个已按升序排好序的数组的末端。如果用复杂度为$ O(n^{2})$的排序（冒泡排序或插入排序），可能会进行n次的比较和交换才能将该数据移至正确位置。而希尔排序会用较大的步长移动数据，所以小数据只需进行少数比较和交换即可到正确位置。</p>
+<h4 id="伪代码">伪代码</h4>
+<ul>
+<li>选区间隔距离d，初始化为 n/2 ，其中n为数组长度，每次循环，d减半，直到d=1</li>
+<li>从第d+1个元素起，一直到第n个，对每间隔为d个的一组元素进行直接插入排序</li>
+</ul>
+<h4 id="程序">程序</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">void Shellsort(T r[], int n)</span><br><span class="line">&#123;</span><br><span class="line">	for (int d = n / 2; d &gt;= 1; d=d/2)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i = d + 1; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			int j;</span><br><span class="line">			r[0] = r[i];</span><br><span class="line">			for (j = i - d; j&gt;=d &amp;&amp; r[0]&lt;r[j]; j = j - d)</span><br><span class="line">				r[j + d] = r[j];</span><br><span class="line">			r[j + d] = r[0];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂性分析">复杂性分析</h4>
+<p>希尔排序时间复杂度的下界是$ O(n\log_{2}{n})$，上界为$O(n^{2})$  ,当$n$在某个范围时，希尔排序时间复杂度趋向于$O(n^{1.3})$，空间复杂度$O(1)$。希尔排序不是稳定排序算法。</p>
+<h4 id="总结分析">总结分析</h4>
+<p>希尔排序的时间复杂度低于直接插入排序，对于中长数组的排序有较好的效果，但是希尔排序并是不稳定的排序</p>
+<hr>
+<h3 id="三-冒泡排序"><strong>三、冒泡排序</strong></h3>
+<h4 id="排序算法名称">排序算法名称</h4>
+<p><strong>冒泡排序<code>（Bubble Sort）</code></strong></p>
+<h4 id="原理">原理</h4>
+<p>冒泡排序顾名思义就是整个过程像气泡一样往上升，单向冒泡排序的基本思想是（假设由小到大排序）：对于给定n个记录，从第一个记录开始依次对相邻的两个记录进行比较，当前面的记录大于后面的记录时，交换位置，进行一轮比较和换位后，n个记录的最大记录将位于第n位，然后对前（n-1）个记录进行第二轮比较；重复该过程，直到记录剩下一个为止。</p>
+<h4 id="伪代码">伪代码</h4>
+<ul>
+<li>记未排序元素的最后一个为<code>exchange</code>，初始化<code>exchange</code>为数组长度n</li>
+<li>当<code>exchange</code>不为0时进行循环
+<ul>
+<li>赋予<code>bound</code>为<code>exchange</code>的值，<code>exchange</code>值为0</li>
+<li>从第一个数组元素起，到第<code>bound-1</code>个元素结束
+<ul>
+<li>如果前一个元素大于后一个元素，则元素值交换，且<code>exchange</code>记录为前一个元素的位置</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="程序">程序</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">void Bubblesort(T r[], int n)</span><br><span class="line">&#123;</span><br><span class="line">	T temp;</span><br><span class="line">	int exchange = n;</span><br><span class="line">	while (exchange != 0)</span><br><span class="line">	&#123;</span><br><span class="line">		int bound = exchange;</span><br><span class="line">		exchange = 0;</span><br><span class="line">		for (int j = 1; j&lt;bound-1; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if (r[j]&gt;r[j + 1])</span><br><span class="line">			&#123;</span><br><span class="line">				temp = r[j];</span><br><span class="line">				r[j] = r[j + 1];</span><br><span class="line">				r[j + 1] = temp;</span><br><span class="line">				exchange = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂性分析">复杂性分析</h4>
+<ul>
+<li>当最好的情况，也就是要排序的序列本身就是有序的，需要进行$n-1$次比较，没有数据交换，时间复杂度为$O(n)$。</li>
+<li>当最坏的情况，即待排序的表是逆序的情况，此时需要比较次数为：$\sum_{i=1}^{n-1} I=\frac{n(n-1)}{2} $次，数据交换次数为$\frac{3n(n-1)}{2} $。</li>
+<li>故平均情况情况下，比较和交换的时间复杂度都为$ O(n^{2})$。</li>
+</ul>
+<h4 id="总结分析">总结分析</h4>
+<p>冒泡排序是一种简单的排序，但是时间复杂度也达到了$O(n^2)$，故只适合较短数组或是基本按照顺序排列的数组，不适合中长数组的排序。另外，冒泡排序是一种稳定的排序算法。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/txt及csv文件读写/" data-toggle="tooltip" data-placement="top" title="txt及csv文件读写">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/使用Pygal模块模拟掷骰子/" data-toggle="tooltip" data-placement="top" title="使用Pygal模块模拟掷骰子">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-直接插入排序"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><strong>&#x4E00;&#x3001;&#x76F4;&#x63A5;&#x63D2;&#x5165;&#x6392;&#x5E8F;</strong></span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#排序算法名称"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x540D;&#x79F0;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#原理"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x539F;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#伪代码"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4F2A;&#x4EE3;&#x7801;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#程序"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x7A0B;&#x5E8F;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#复杂性分析"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x590D;&#x6742;&#x6027;&#x5206;&#x6790;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总结分析"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">&#x603B;&#x7ED3;&#x5206;&#x6790;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-shell排序"><span class="toc-nav-number">2.</span> <span class="toc-nav-text"><strong>&#x4E8C;&#x3001;shell&#x6392;&#x5E8F;</strong></span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#排序算法名称"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x540D;&#x79F0;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#原理"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">&#x539F;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#伪代码"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">&#x4F2A;&#x4EE3;&#x7801;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#程序"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">&#x7A0B;&#x5E8F;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#复杂性分析"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">&#x590D;&#x6742;&#x6027;&#x5206;&#x6790;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总结分析"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">&#x603B;&#x7ED3;&#x5206;&#x6790;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-冒泡排序"><span class="toc-nav-number">3.</span> <span class="toc-nav-text"><strong>&#x4E09;&#x3001;&#x5192;&#x6CE1;&#x6392;&#x5E8F;</strong></span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#排序算法名称"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x540D;&#x79F0;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#原理"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">&#x539F;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#伪代码"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">&#x4F2A;&#x4EE3;&#x7801;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#程序"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">&#x7A0B;&#x5E8F;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#复杂性分析"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">&#x590D;&#x6742;&#x6027;&#x5206;&#x6790;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总结分析"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">&#x603B;&#x7ED3;&#x5206;&#x6790;</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                        
+                          <a class="tag" href="/tags/#c++" title="c++">c++</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: '✎' /*'ℬ' */
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/huang-cen-san">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5809332604">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chalsyn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Chalsyn_tse 2019 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    re-Ported by <a href="http://chalsyn.github.io">Chalsyn</a> 
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": { 
+        preferredFont: "TeX", 
+        availableFonts: ["STIX","TeX"], 
+        linebreaks: { automatic:true }, 
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) 
+    },
+    tex2jax: { 
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ], 
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {  
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, 
+        Macros: { href: "{}" } 
+    },
+    messageStyle: "none"
+    }); 
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+    
+    
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+</html>
