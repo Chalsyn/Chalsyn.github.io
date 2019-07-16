@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          MysQL基础教程（二） - chalsyn | Blog
+          test01 - chalsyn | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/MysQL基础教程（二）/">
+    <link rel="canonical" href="http://yoursite.com/article/ubuntu简要命令/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
-                            
                         </div>
-                        <h1>MysQL基础教程（二）</h1>
+                        <h1>test01</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Chalsyn_tse on
-                            2019-03-12
+                            2019-07-16
                         </span>
                     </div>
                 
@@ -213,67 +211,43 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="数据查询格式">数据查询格式</h3>
-<p>数据查询的一般格式是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select [all|distinct] column1,column2,...</span><br><span class="line">from table (as renamen_table1| rename_table)</span><br><span class="line">where &lt;cond1&gt;</span><br><span class="line">group by column3 (having &lt;cond2&gt;)</span><br><span class="line">order by column4 [asc|desc];</span><br></pre></td></tr></table></figure>
-<h5 id="一些用法示例">一些用法示例</h5>
+                <h2 id="ubuntu系统简要功能命令">ubuntu系统简要功能命令</h2>
+<hr>
+<h5 id="目录及文件系统">目录及文件系统</h5>
+<p>inux 和 Unix 文件系统被组织成一个有层次的树形结构。文件系统的最上层是 /，或称为 根目录。在 Unix 和 Linux 的设计理念中，一切皆为文件——包括硬盘、分区和可插拔介质。这就意味着所有其它文件和目录（包括其它硬盘和分区）都位于根目录中。 例如：/home/jebediah/cheeses.odt 给出了正确的完整路径，它指向 cheeses.odt 文件，而该文件位于 jebediah 目录下，该目录又位于 home 目录，最后，home 目录又位于根(/) 目录下。 在根 (/) 目录下，有一组重要的系统目录，在大部分 Linux 发行版里都通用。直接位于根 (/) 目录下的常见目录列表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/bin - 重要的二进制 (binary) 应用程序</span><br><span class="line">/boot - 启动 (boot) 配置文件</span><br><span class="line">/dev - 设备 (device) 文件</span><br><span class="line">/etc - 配置文件、启动脚本等 (etc)</span><br><span class="line">/home - 本地用户主 (home) 目录</span><br><span class="line">/lib - 系统库 (libraries) 文件</span><br><span class="line">/lost+found - 在根 (/) 目录下提供一个遗失+查找(lost+found) 系统</span><br><span class="line">/media - 挂载可移动介质 (media)，诸如 CD、数码相机等</span><br><span class="line">/mnt - 挂载 (mounted) 文件系统</span><br><span class="line">/opt - 提供一个供可选的 (optional) 应用程序安装目录</span><br><span class="line">/proc - 特殊的动态目录，用以维护系统信息和状态，包括当前运行中进程 (processes) 信息。</span><br><span class="line">/root - root (root) 用户主文件夹，读作“slash-root”</span><br><span class="line">/sbin - 重要的系统二进制 (system binaries) 文件</span><br><span class="line">/sys - 系统 (system) 文件</span><br><span class="line">/tmp - 临时(temporary)文件</span><br><span class="line">/usr - 包含绝大部分所有用户(users)都能访问的应用程序和文件</span><br><span class="line">/var - 经常变化的(variable)文件，诸如日志或数据库</span><br></pre></td></tr></table></figure>
+<h5 id="root及sudo命令">root及sudo命令</h5>
+<p>GNU/Linux 系统的 root 用户具有系统的管理权限。出于安全考虑，普通用户并不具备这一权限。不过，Ubuntu 上并不包含 root 用户，而是将管理员权限授予特定用户，他们可以使用 “sudo” 应用程序来执行管理任务。默认情况下，在您的系统安装过程中创建的第一个用户帐号具有使用 sudo 的权限。您可以通过用户和组 (参见 第1.3.6节 ― 用户和组) 来限制和赋予用户运行 sudo 的权限。 当您运行一个要求 root 权限的应用程序时，sudo 会要求您输入自己的普通用户密码；这样可以确保恶意程序无法损害您的系统，还可以提醒您应该小心谨慎的对待自己将要执行的管理动作。 在命令行里使用 sudo，只需直接在您想执行的命令前加上&quot;sudo&quot;即可。随后 sudo 会提示您输入自己的密码。 在短时间内 sudo 会记得您输入过的密码。设计这一特性的目的，是为了避免用户在执行多个管理任务时重复输入密码。 执行管理任务时请务必小心，以免损坏系统！ 其它一些 sudo 使用技巧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">欲使用 &quot;root&quot; 终端，请在命令行里输入“sudo -i”。</span><br><span class="line">Ubuntu 里所有图形界面配置工具（启动时）默认已使用sudo，因此如有必要它们会提示您输入自己的密码。</span><br></pre></td></tr></table></figure>
+<h5 id="一些常用简单命令">一些常用简单命令</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">1. 切换到 root 用户 ，输入 “sudo -i ”或“sudo su -”, 退出 “exit”</span><br><span class="line"></span><br><span class="line">2. pwd 显示当前目录， pwd = print working directory</span><br><span class="line"></span><br><span class="line">3. ls 列出目录下当前文件</span><br><span class="line"></span><br><span class="line">4. cp 复制文件/目录 cp (源文件或目录) (目标文件或目录)</span><br><span class="line"></span><br><span class="line">  cp -r  复制文件夹 包括子目录和文件 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5. rm 删除文件/目录 可以删除文件</span><br><span class="line"></span><br><span class="line">    rm -rf  删除目录包含子目录和文件 </span><br><span class="line"></span><br><span class="line">    rmdir  删除空文件夹 </span><br><span class="line"></span><br><span class="line">6. mv 移动或重命名 文件</span><br><span class="line"></span><br><span class="line">7. cd 进入目录</span><br><span class="line"></span><br><span class="line">    cd / 进入根目录 </span><br><span class="line"></span><br><span class="line">    cd 或 cd ~ 进入用户的 home 目录 </span><br><span class="line"></span><br><span class="line">    cd - 进入上次访问的目录 (相当于 back) </span><br><span class="line"></span><br><span class="line">   cd ..  进入上级目录 </span><br><span class="line"></span><br><span class="line">8. man 显示某个命令的 manual</span><br><span class="line"></span><br><span class="line">9. df 显示文件系统空间信息</span><br><span class="line"></span><br><span class="line">   df -h  用 M 和 G 做单位显示文件系统空间信息 -h 意思是 human-readable </span><br><span class="line"></span><br><span class="line">10. du 显示目录的空间使用信息</span><br><span class="line"></span><br><span class="line">    du -sh /media/floppy </span><br><span class="line"></span><br><span class="line">    -s 意思 summary  -h 意思 human-readable </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">11. ifconfig 显示系统的网络</span><br><span class="line"></span><br><span class="line">12. locate 命令会在您的计算机里搜索您指定的任意文件。它使用您系统中的文件索引以便进行快速查找：运行命令 updatedb 可以更新该索引。每天您一开机，该命令便会（在合适的时机）自动运行。运行该命令需要具备管理员权限 (参见 第1.3.3节 ― root 用户和 sudo 命令)。</span><br></pre></td></tr></table></figure>
+<p>还可以使用通配符来匹配一个或多个文件，如 “*” (匹配所有文件) 或 “?” (匹配一个字符)。</p>
+<h5 id="文本编辑">文本编辑</h5>
 <ul>
-<li>显示结果为四个列：sname（表中数据），‘year of birth’(添加的辅助列)，2014-sage（数据计算结果),lower(sedpt)（字符数据的小写化）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sname,&apos;year of birth&apos;,2014-sage,lower(sdept) from student;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>不显示重复的记录</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct sno from student</span><br></pre></td></tr></table></figure>
-<ul>
-<li>一些查询条件语句</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>查询条件</th>
-<th style="text-align:right">谓词</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>比较</td>
-<td style="text-align:right">=，&gt;，&lt;，$\leq$，$\geq$，&lt;&gt;，!&lt;，!&gt;；not +上述比较符</td>
-</tr>
-<tr>
-<td>确定范围</td>
-<td style="text-align:right">BETWEEN AND ,NOT BETWEEN AND</td>
-</tr>
-<tr>
-<td>确定集合</td>
-<td style="text-align:right">IN，NOT IN</td>
-</tr>
-<tr>
-<td>字符匹配</td>
-<td style="text-align:right">LIKE，NOT LIKE</td>
-</tr>
-<tr>
-<td>空值</td>
-<td style="text-align:right">IS NULL，IS NOT NULL</td>
-</tr>
-<tr>
-<td>多重条件</td>
-<td style="text-align:right">AND, OR, NOT</td>
-</tr>
-</tbody>
-</table>
-<p>例如，查询年龄不在20到23岁之间的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT student,sedpt,sage from student where sage NOT BETWEEN 20 AND 23;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>字符匹配
-<ul>
-<li>% 表示任意长度的字符串</li>
-<li>_ 表示任意单个字符串<br>
-例如，’_杨%’ 可以与 'l杨jklssf’成功匹配。</li>
-</ul>
+<li>
+<p>Linux 中的所有配置和设定都保存在文本文件里。尽管您可以通过图形界面来编辑大部分配置，但有时您还是得手工编辑它们。Gedit 是 Ubuntu 的默认文本编辑器，您可以通过点击桌面菜单系统中的应用程序 → 附件 → 文本编辑器来启动它。 本指南中，有时为了修改配置文件，会从命令行里使用 gksudo 来运行 Gedit，这样就能以管理权限来运行 Gedit。</p>
+</li>
+<li>
+<p>如果需要在命令行中使用文本编辑器，那么您可以使用 nano 这个用法简单的文本编辑器。如果要在命令行中运行 nano，请务必使用如下命令：nano -w，它可确保编辑器不会插入断行符</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT student,sedpt,sage from student where sname like &apos;_杨%&apos;;</span><br></pre></td></tr></table></figure>
+<h5 id="apt管理软件">APT管理软件</h5>
+<p>APT (Advanced Package Tool,高级软件包工具) 是一个强大的包管理系统，而那些图形化程序如 添加/删除 应用程序 和 Synaptic 都是建立在它的基础之上的。APT 自动处理依赖关系并在系统软件包执行其他操作以便安装所要的软件包。 运行 APT 要求管理权限 (参见 第1.3.3节 ― root 用户和 sudo 命令)。 可以被 APT 使用的一些常用命令：</p>
+<ul>
+<li>安装软件包：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install packagename</span><br></pre></td></tr></table></figure>
+<pre><code>删除软件包：
+</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">        sudo apt-get remove packagename </span><br><span class="line">``` </span><br><span class="line">    获取新的软件包列表：</span><br><span class="line">``` </span><br><span class="line">        sudo apt-get update </span><br><span class="line">``` </span><br><span class="line">    升级有可用更新的系统：</span><br><span class="line">``` </span><br><span class="line">        sudo apt-get upgrade </span><br><span class="line">``` </span><br><span class="line">    列出更多命令和选项：</span><br><span class="line">``` </span><br><span class="line">        apt-get help </span><br><span class="line">``` </span><br><span class="line">        </span><br><span class="line">  ##### 安装包管理</span><br><span class="line">  </span><br><span class="line">  这些是Debian 软件包。这些与 Ubuntu 相关的软件包文件使用 .deb 后缀是因为 Ubuntu 与 Debian GNU/Linux 发行版有着紧密的关系。您将需要管理权限来安装 .deb 文件 ( root 用户和 sudo 命令)。</span><br><span class="line"></span><br><span class="line">  要安装 .deb 文件，简单地双击它，然后选择 安装软件包 即可。</span><br><span class="line"> 或者，您也可以打开一个终端并输入：</span><br></pre></td></tr></table></figure>
+<p>sudo dpkg -i package_file.deb</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">来安装 .deb 文件。</span><br><span class="line">     </span><br><span class="line"> 如需卸载 .deb 文件，在您软件包管理器中反选它，或输入：、</span><br></pre></td></tr></table></figure>
+<pre><code>   sudo dpkg -r package_name
+</code></pre>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将.rmp包转化成.deb，在终端使用管理权限运行以下命令：</span><br></pre></td></tr></table></figure>
+<pre><code>    sudo alien package_file.rpm
+</code></pre>
+<pre><code></code></pre>
 
                 
 
@@ -281,13 +255,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/ubuntu简要命令/" data-toggle="tooltip" data-placement="top" title="test01">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/MySQL基础（一）/" data-toggle="tooltip" data-placement="top" title="MySQL基础（一）">Next Post &rarr;</a>
+                            <a href="/article/MysQL基础教程（二）/" data-toggle="tooltip" data-placement="top" title="MysQL基础教程（二）">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -343,7 +313,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据查询格式"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6570;&#x636E;&#x67E5;&#x8BE2;&#x683C;&#x5F0F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#一些用法示例"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">&#x4E00;&#x4E9B;&#x7528;&#x6CD5;&#x793A;&#x4F8B;</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ubuntu系统简要功能命令"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">ubuntu&#x7CFB;&#x7EDF;&#x7B80;&#x8981;&#x529F;&#x80FD;&#x547D;&#x4EE4;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#目录及文件系统"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">&#x76EE;&#x5F55;&#x53CA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#root及sudo命令"><span class="toc-nav-number">1.0.0.2.</span> <span class="toc-nav-text">root&#x53CA;sudo&#x547D;&#x4EE4;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#一些常用简单命令"><span class="toc-nav-number">1.0.0.3.</span> <span class="toc-nav-text">&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x7B80;&#x5355;&#x547D;&#x4EE4;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#文本编辑"><span class="toc-nav-number">1.0.0.4.</span> <span class="toc-nav-text">&#x6587;&#x672C;&#x7F16;&#x8F91;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#apt管理软件"><span class="toc-nav-number">1.0.0.5.</span> <span class="toc-nav-text">APT&#x7BA1;&#x7406;&#x8F6F;&#x4EF6;</span></a></li></ol></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -363,8 +333,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
-                        
                     </div>
                 </section>
                 
@@ -488,43 +456,6 @@
 
 <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
-    <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": { 
-        preferredFont: "TeX", 
-        availableFonts: ["STIX","TeX"], 
-        linebreaks: { automatic:true }, 
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) 
-    },
-    tex2jax: { 
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ], 
-        processEscapes: true, 
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {  
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, 
-        Macros: { href: "{}" } 
-    },
-    messageStyle: "none"
-    }); 
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-    
     
 <!-- async load function -->
 <script>
