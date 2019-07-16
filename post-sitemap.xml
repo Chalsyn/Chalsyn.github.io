@@ -15,14 +15,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/hello-world/</loc>
-        <lastmod>2019-07-15T14:07:38.536Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://yoursite.com/article/MysQL%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
         <lastmod>2019-03-19T14:42:18.000Z</lastmod>
         <changefreq>weekly</changefreq>
