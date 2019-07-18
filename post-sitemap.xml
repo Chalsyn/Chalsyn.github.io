@@ -7,8 +7,8 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/article/%E2%80%98%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E2%80%99/</loc>
-        <lastmod>2019-07-18T05:13:46.731Z</lastmod>
+        <loc>http://yoursite.com/article/%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/</loc>
+        <lastmod>2019-07-18T14:48:36.294Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +16,7 @@
 
     <url>
         <loc>http://yoursite.com/article/ubuntu%E7%AE%80%E8%A6%81%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2019-07-16T13:41:41.104Z</lastmod>
+        <lastmod>2019-07-18T14:47:35.609Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
